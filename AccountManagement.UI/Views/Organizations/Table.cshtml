@@ -1,0 +1,18 @@
+﻿@model OrganizationViewModel
+<table id="table">
+    <tr>
+        <th onclick="sortTable(0)">Name</th>
+        <th onclick="sortTable(1)">BusinessId</th>
+        <th onclick="sortTable(2)">Info</th>
+        <th onclick="sortTable(3)">Email</th>
+    </tr>
+    @foreach (var organization in Model.Organizations)
+    {
+        <tr class="edit" id="@organization.Id">
+            <td id="name">@organization.Name</td>
+            <td id="businessid">@organization.BusinessId</td>
+            <td id="info">@organization.Info</td>
+            <td id="email">@organization.Email</td>
+        </tr>
+    }
+</table>

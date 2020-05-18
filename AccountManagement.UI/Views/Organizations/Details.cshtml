@@ -1,0 +1,85 @@
+﻿@model OrganizationViewModel
+
+<div id="organizationSidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeOrganizationPanel()">×</a>
+    <input type="text" id="organizationName" hidden>
+    <div class="tab">
+        <button class="tablinks" onclick="changePage(event, 'organization')">Organization</button>
+        <button class="tablinks" onclick="changePage(event, 'applications')" data-applications-btn disabled>Applications</button>
+    </div>
+    <div id="organization" class="container-form tabcontent">
+        <form asp-action="OrganizationAction">
+            <div class="row">
+                <div class="col-25">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="name" name="name" placeholder="Organization name" data-organizationname-input required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="businessid">BusinessId</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="businessid" name="businessid" placeholder="Organization businessid" data-organizationbusinessid-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="info">Info</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="info" name="info" placeholder="Organization info" data-organizationinfo-input>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-75">
+                    <input type="email" id="email" name="email" placeholder="Organization email" data-organizationemail-input>
+                </div>
+            </div>
+            <input type="text" name="Id" id="Id" data-id-input hidden />
+            <div class="row">
+                <input type="submit" name="actionbtn" value="Submit" data-action-btn>
+                <a class="deletebtn" data-delete-organization><i class="fas fa-trash-alt"></i></a>
+            </div>
+        </form>
+    </div>
+    <div id="applications" class="tabcontent">
+        <div id="applicationsTable">
+            <div class="add-action">
+                <button class="btn" value="add" data-add-application-btn><i class="fas fa-plus-circle"></i></button>
+            </div>
+            <table id="apps">
+                <tr>
+                    <th hidden></th>
+                    <th>Name</th>
+                    <th>License</th>
+                </tr>
+                @foreach (var app in Model.ApplicationOrganizations)
+                {
+                    <tr>
+                        <td hidden>@app.Organization</td>
+                        <td>@app.Application</td>
+                        <td>@app.License</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div id="addForm" class="addForm">
+            <form asp-controller="Organizations" asp-action="AddApplicationForOrganization">
+                <input type="text" id="organizationValue" name="organization" hidden>
+                <select id="applicationDrobdown" name="application">
+                    @foreach (var application in Model.Applications)
+                    {
+                        <option id="@application.Name" value="@application.Name">@application.Name</option>
+                    }
+                </select>
+                <button value="Add">Add application</button>
+            </form>
+        </div>
+    </div>
+</div>

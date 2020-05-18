@@ -1,0 +1,20 @@
+﻿@model AccountViewModel
+<table id="table">
+    <tr>
+        <th onclick="sortTable(0)">Username</th>
+        <th onclick="sortTable(1)">Email</th>
+        <th onclick="sortTable(2)">PhoneNumber</th>
+        <th onclick="sortTable(3)">Role</th>
+        <th onclick="sortTable(4)">Organization</th>
+    </tr>
+    @foreach(var account in Model.Accounts)
+    {
+        <tr class="edit" id="@account.Id">
+            <td id="username">@account.Username</td>
+            <td id="email">@account.Email</td>
+            <td id="phone">@account.PhoneNumber</td>
+            <td id="role">@account.Role</td>
+            <td id="organization">@account.Organization</td>
+        </tr>
+    }
+</table>

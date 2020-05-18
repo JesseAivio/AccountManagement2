@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AccountManagement</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://kit.fontawesome.com/70459c8fc9.js"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <a asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+        <a asp-controller="Accounts" asp-action="Index">Accounts</a>
+        <a asp-controller="Organizations" asp-action="Index">Organizations</a>
+        <a asp-controller="Applications" asp-action="Index">Applications</a>
+    </div>
+    <div class="main">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

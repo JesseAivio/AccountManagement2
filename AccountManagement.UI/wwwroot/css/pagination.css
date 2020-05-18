@@ -1,0 +1,43 @@
+﻿.pagination, #pageSizeForm {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 10px;
+  text-align: center;
+  /*padding: 8px 16px;*/
+  text-decoration: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border:none;  
+  cursor: pointer;
+}
+
+.rows-selector {
+    float: left;
+    padding: 10px;
+    border: 1px solid blue;
+}
+
+.pagination a.active {
+  background-color: blue;
+  color: white;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.result {
+    float: right;
+    padding-right: 5px;
+}

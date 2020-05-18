@@ -1,0 +1,100 @@
+﻿@model AccountViewModel
+<div id="accountSidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSide()">×</a>
+    <input type="text" id="usernameValue" hidden />
+    <div class="tab">
+        <button class="tablinks" onclick="changePage(event, 'account')">Account</button>
+        <button class="tablinks" onclick="changePage(event, 'log')" data-log-btn disabled>Log</button>
+    </div>
+    <div id="account" class="container-form tabcontent">
+        <form asp-action="AccountAction">
+            <div class="row">
+                <div class="col-25">
+                    <label for="username">Username</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="username" name="username" placeholder="Username" data-username-input required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="email">Email</label>
+                </div>
+                <div class="col-75">
+                    <input type="email" id="email" name="email" placeholder="Email" data-email-input required>
+                </div>
+            </div>
+            <div class="row" data-password-div>
+                <div class="col-25">
+                    <label for="password">Password</label>
+                </div>
+                <div class="col-75">
+                    <input type="password" id="password" name="password" placeholder="Password" data-password-input required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="phonenumber">Phone</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="phonenumber" name="phonenumber" placeholder="Phonenumber" data-phone-input required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="role">Role</label>
+                </div>
+                <div class="col-75">
+                    <select id="role-combobox" name="role" data-role-combobox required>
+                        <option value="Admin">Admin</option>
+                        <option value="Basic">Basic</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="organization">Organization</label>
+                </div>
+                <div class="col-75">
+                    <select id="organization-combobox" name="organization" data-organization-combobox required>
+                        @foreach (var organization in Model.Organizations)
+                        {
+                            <option value="@organization.Name">@organization.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <input type="text" name="Id" id="Id" data-id-input hidden />
+
+            <div class="row">
+                <input type="submit" name="actionbtn" value="Register" data-action-button>
+                <a class="deletebtn" data-delete-account><i class="fas fa-trash-alt"></i></a>
+            </div>
+        </form>
+    </div>
+    <div id="log" class="tabcontent">
+        <div class="log-table-div">
+            <table>
+                <tr>
+                    <th>Application</th>
+                    <th>WasSuccessful</th>
+                    <th>HWID</th>
+                    <th>Ip address</th>
+                    <th>Date</th>
+                </tr>
+                @foreach(var log in Model.AccountLogs)
+                {
+                    <tr>
+                        <td hidden>@log.Account</td>
+                        <td>@log.Application</td>
+                        <td>@log.wasSuccessful</td>
+                        <td>@log.HWID</td>
+                        <td>@log.IpAddress</td>
+                        <td>@log.Date</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@model AccountViewModel
+<script>
+    window.onload = function() { SetSel(); }
+    function SetSel()
+    {
+        let Combo = document.getElementById ( "pagesize" );
+        Combo.value = @Model.Pager.PageSize;   
+    }
+</script>
+<div class="pagination">
+    @if (Model.Pager.EndPage > 1)
+    {
+        <a class="@(Model.Pager.CurrentPage > 1 ? "" : "disabled")" href="~/Accounts/Index?pageSize=@(Model.Pager.PageSize)" data-first-link><i class="fas fa-step-backward"></i></a>
+        <a class="@(Model.Pager.CurrentPage > 1 ? "" : "disabled")" href="~/Accounts/Index?page=@(Model.Pager.CurrentPage - 1)" data-previous-link><i class="fas fa-caret-left"></i></a>
+        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+        {
+            <a class="@(page == Model.Pager.CurrentPage ? "active" : "")" href='@string.Format($"/Accounts/Index?page={page}")'>@(page)</a>
+        }
+        <a class="@(Model.Pager.CurrentPage < Model.Pager.TotalPages ? "" : "disabled")" href="~/Accounts/Index?page=@(Model.Pager.CurrentPage + 1)" data-next-link><i class="fas fa-caret-right"></i></a>
+        <a class="@(Model.Pager.CurrentPage < Model.Pager.TotalPages ? "" : "disabled")" href="~/Accounts/Index?page=@(Model.Pager.TotalPages)" data-last-link><i class="fas fa-step-forward"></i></a>
+    }
+    <form id="pageSizeForm" asp-controller="Accounts" asp-action="Index">
+        <select id="pagesize" name="pageSize" class="rows-selector" onchange="changePageSize()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+        </select>
+    </form>
+    
+</div>
+<div class="result">
+    <p>1 - 10 of @Model.Pager.Total results</p>
+</div>
+<script src="~/js/pagination.js"></script>

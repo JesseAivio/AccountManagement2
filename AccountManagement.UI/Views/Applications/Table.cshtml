@@ -1,0 +1,12 @@
+﻿@model ApplicationViewModel
+<table id="table">
+    <tr>
+        <th onclick="sortTable(0)">Name</th>
+    </tr>
+    @foreach (var app in Model.Applications)
+    {
+        <tr class="edit" id="@app.Id">
+            <td id="name">@app.Name</td>
+        </tr>
+    }
+</table>

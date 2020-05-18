@@ -1,0 +1,55 @@
+﻿@model ApplicationViewModel
+<div id="applicationSidepanel" class="sidepanel">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeApplicationPanel()">×</a>
+    <input type="text" id="applicationName" hidden>
+    <div class="tab">
+        <button class="tablinks" onclick="changePage(event, 'application')">Application</button>
+        <button class="tablinks" onclick="changePage(event, 'license')" data-license-btn disabled>Licenses</button>
+    </div>
+    <div id="application" class="container-form tabcontent">
+        <form asp-action="ApplicationAction">
+            <div class="row">
+                <div class="col-25">
+                    <label for="name">Name</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="name" name="name" placeholder="Application name" data-applicationname-input required>
+                </div>
+            </div>
+            <input type="text" name="Id" id="Id" data-id-input hidden />
+            <div class="row">
+                <input type="submit" name="actionbtn" value="Submit" data-action-btn>
+                <a class="deletebtn" data-delete-application><i class="fas fa-trash-alt"></i></a>
+            </div>
+        </form>
+    </div>
+    <div id="license" class="tabcontent">
+        <div class="license-actions-div">
+            <a class="add-licenses-btn" data-add-licenses><i class="fas fa-plus-circle"></i></a>
+        </div>
+        <div class="license-table-div">
+            <table id="licenses">
+                <tr>
+                    <th hidden></th>
+                    <th>Key</th>
+                    <th>isFree</th>
+                    <th>isLocked</th>
+                    <th>RenewDate</th>
+                    <th>ReleaseDate</th>
+                </tr>
+                @foreach (var license in Model.Licenses)
+                {
+                    <tr>
+                        <td hidden>@license.Application</td>
+                        <td>@license.Key</td>
+                        <td>@license.isFree</td>
+                        <td>@license.isLocked</td>
+                        <td>@license.RenewDate</td>
+                        <td>@license.ReleaseDate</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        
+    </div>
+</div>

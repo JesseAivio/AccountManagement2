@@ -1,0 +1,42 @@
+﻿@model ApplicationViewModel
+@{
+    ViewData["Title"] = "Applications";
+}
+
+<link href="~/css/table.css" rel="stylesheet" />
+<link href="~/css/pagination.css" rel="stylesheet" />
+<link href="~/css/details.css" rel="stylesheet" />
+<link href="~/css/response.css" rel="stylesheet" />
+
+@if (ViewData["messageType"] != null)
+{
+    if (ViewData["messageType"].ToString() == "Success")
+    {
+        <div class="response success" id="message">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeMessage()"><i class="fas fa-times"></i></a>
+            <p>@ViewData["message"].ToString()</p>
+        </div>
+    }
+    else if (ViewData["messageType"].ToString() == "Error")
+    {
+        <div style="display:block;" class="response error" id="message">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeMessage()"><i class="fas fa-times"></i></a>
+            <p>@ViewData["message"].ToString()</p>
+        </div>
+    }
+}
+
+<div class="container">
+    <div class="actions">
+        <partial name="Actions" />
+    </div>
+    <partial name="Table" model="Model" />
+    <div class="bottom">
+        <partial name="Pagination" model="Model" />
+    </div>
+</div>
+
+<partial name="Details" model="Model" />
+<script src="~/js/table.js" asp-append-version="true"></script>
+<script src="~/js/applicationsidepanel.js" asp-append-version="true"></script>
+<script src="~/js/response.js" asp-append-version="true"></script>
