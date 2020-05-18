@@ -50,9 +50,9 @@ function clearValues() {
 }
 
 function insertValuesToAccountForm(account, id) {
-    var children = account.childNodes;
-    for (var i = 0; i < children.length; i++) {
-        var child = children[i];
+    let children = account.childNodes;
+    for (let i = 0; i < children.length; i++) {
+        let child = children[i];
         if (child.id === "username") {
             usernameInput.value = child.innerHTML;
             accountName.value = child.innerHTML;
@@ -90,7 +90,7 @@ Array.prototype.forEach.call(editAccounts, function addClickListener(btn) {
 
 
 function changePage(evt, page) {
-    var i, tabcontent, tablinks;
+    let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
@@ -104,13 +104,11 @@ function changePage(evt, page) {
 }
 
 function filterLogTable(value) {
-    // Declare variables
-    var filter, table, tr, td, i, txtValue;
+    let filter, table, tr, td, i, txtValue;
     filter = value.toUpperCase();
     table = document.getElementById("log");
     tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {

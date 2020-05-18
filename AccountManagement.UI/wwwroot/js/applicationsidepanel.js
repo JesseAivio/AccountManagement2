@@ -41,9 +41,9 @@ function insertValuesToApplicationForm(account, id) {
     deleteApplication.href = `/Applications/Delete?Id=${id}`;
     idInput.style.display = "none";
     actionButton.value = "Update";
-    var children = account.childNodes;
-    for (var i = 0; i < children.length; i++) {
-        var child = children[i];
+    let children = account.childNodes;
+    for (let i = 0; i < children.length; i++) {
+        let child = children[i];
         if (child.id === "name") {
             applicationNameInput.value = child.innerHTML;
             applicationName.value = child.innerHTML;
@@ -70,7 +70,7 @@ Array.prototype.forEach.call(editApplications, function addClickListener(btn) {
 });
 
 function changePage(evt, page) {
-    var i, tabcontent, tablinks;
+    let i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
@@ -85,13 +85,11 @@ function changePage(evt, page) {
 
 
 function filterLicenseTable(value) {
-    // Declare variables
-    var filter, table, tr, td, i, txtValue;
+    let filter, table, tr, td, i, txtValue;
     filter = value.toUpperCase();
     table = document.getElementById("licenses");
     tr = table.getElementsByTagName("tr");
 
-    // Loop through all table rows, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];
         if (td) {
