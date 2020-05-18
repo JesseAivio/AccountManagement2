@@ -1,4 +1,5 @@
 GO
+DELETE FROM [dbo].[EmailTemplate]
 INSERT INTO [dbo].[EmailTemplate]([Id]
       ,[Subject]
       ,[Body]
@@ -14,5 +15,14 @@ INSERT INTO [dbo].[EmailTemplate]([Id]
       ,'accountRegister'),(NEWID()
       ,'License needs to be renewd'
       ,'Hello, {Organization} You need to renew your application license'
-      ,'licenseRenew')
+      ,'licenseRenew'),(NEWID()
+      ,'License has been locked'
+      ,'Hello, {Organization} One of your licenses has been locked'
+      ,'licenseLock'),(NEWID()
+      ,'License has been freed'
+      ,'Hello, {Organization} One of your licenses has been freed'
+      ,'licenseFreed'),(NEWID()
+      ,'Suspicious LogIn'
+      ,'Hello, {Organization} One of your accounts has suspicious logins'
+      ,'suspiciousLogIn')
 GO
